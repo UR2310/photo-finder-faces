@@ -1,0 +1,89 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Edit Profile - PhotoFinder{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="mb-6">
+        <a href="{% url 'users:profile' %}" class="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Back to profile
+        </a>
+    </div>
+
+    <h1 class="text-3xl font-bold mb-2">Edit Profile</h1>
+    <p class="text-muted-foreground mb-6">
+        Update your personal information
+    </p>
+    
+    <div class="bg-card rounded-xl shadow-soft p-6 max-w-2xl">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium mb-1">
+                            First Name
+                        </label>
+                        {{ form.first_name }}
+                    </div>
+                    
+                    <div>
+                        <label for="{{ form.last_name.id_for_label }}" class="block text-sm font-medium mb-1">
+                            Last Name
+                        </label>
+                        {{ form.last_name }}
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium mb-1">
+                        Email
+                    </label>
+                    {{ form.email }}
+                </div>
+                
+                <div>
+                    <label for="{{ form.bio.id_for_label }}" class="block text-sm font-medium mb-1">
+                        Bio
+                    </label>
+                    {{ form.bio }}
+                </div>
+                
+                <div>
+                    <label for="{{ form.avatar.id_for_label }}" class="block text-sm font-medium mb-1">
+                        Profile Picture
+                    </label>
+                    <div class="flex items-center space-x-4">
+                        {% if user.profile.avatar %}
+                        <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}" class="w-16 h-16 rounded-full object-cover">
+                        {% else %}
+                        <div class="w-16 h-16 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                        </div>
+                        {% endif %}
+                        <div class="flex-1">
+                            {{ form.avatar }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pt-4 flex justify-end space-x-3">
+                    <a href="{% url 'users:profile' %}" class="inline-flex items-center justify-center px-4 py-2 border border-muted rounded-md hover:bg-muted transition-colors">
+                        Cancel
+                    </a>
+                    <button type="submit" class="inline-flex items-center justify-center px-6 py-2 bg-primary text-primary-foreground font-medium rounded-md hover:bg-primary/90 transition-colors">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,157 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Your Profile - PhotoFinder{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-2">Your Profile</h1>
+    <p class="text-muted-foreground mb-6">
+        View and manage your account details
+    </p>
+    
+    <div class="bg-card rounded-xl shadow-soft p-6 mb-8">
+        <div class="flex flex-col md:flex-row gap-6">
+            <div class="md:w-1/4">
+                {% if user.profile.avatar %}
+                <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}" class="w-full aspect-square rounded-lg object-cover">
+                {% else %}
+                <div class="w-full aspect-square rounded-lg bg-muted flex items-center justify-center text-muted-foreground">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="md:w-3/4">
+                <h2 class="text-xl font-semibold mb-2">{{ user.username }}</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <div class="text-sm text-muted-foreground">Name</div>
+                        <div>{{ user.get_full_name|default:"Not provided" }}</div>
+                    </div>
+                    
+                    <div>
+                        <div class="text-sm text-muted-foreground">Email</div>
+                        <div>{{ user.email }}</div>
+                    </div>
+                    
+                    <div>
+                        <div class="text-sm text-muted-foreground">Member since</div>
+                        <div>{{ user.date_joined|date:"F j, Y" }}</div>
+                    </div>
+                    
+                    <div>
+                        <div class="text-sm text-muted-foreground">Last login</div>
+                        <div>{{ user.last_login|date:"F j, Y" }}</div>
+                    </div>
+                </div>
+                
+                {% if user.profile.bio %}
+                <div class="mb-4">
+                    <div class="text-sm text-muted-foreground mb-1">Bio</div>
+                    <div>{{ user.profile.bio }}</div>
+                </div>
+                {% endif %}
+                
+                <a href="{% url 'users:edit_profile' %}" class="inline-flex items-center justify-center px-4 py-2 bg-muted text-foreground font-medium rounded-md hover:bg-muted/80 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                    Edit Profile
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-card rounded-xl shadow-soft p-6">
+            <h2 class="text-lg font-semibold mb-3">Google Photos</h2>
+            
+            {% if user.google_credential %}
+            <div class="mb-4">
+                <div class="flex items-center space-x-2 text-green-600 mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Connected</span>
+                </div>
+                <p class="text-sm text-muted-foreground">
+                    Your Google Photos account is connected.
+                </p>
+            </div>
+            
+            <div class="flex justify-between">
+                <a href="{% url 'photos:photo_list' %}" class="inline-flex items-center justify-center px-4 py-2 bg-primary text-primary-foreground font-medium rounded-md hover:bg-primary/90 transition-colors">
+                    View Photos
+                </a>
+                
+                <button class="inline-flex items-center justify-center px-4 py-2 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 transition-colors">
+                    Disconnect
+                </button>
+            </div>
+            {% else %}
+            <div class="mb-4">
+                <div class="flex items-center space-x-2 text-amber-600 mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <span>Not Connected</span>
+                </div>
+                <p class="text-sm text-muted-foreground">
+                    Connect your Google Photos account to start using PhotoFinder.
+                </p>
+            </div>
+            
+            <a href="{% url 'photos:connect_google_photos' %}" class="inline-flex items-center justify-center px-4 py-2 bg-primary text-primary-foreground font-medium rounded-md hover:bg-primary/90 transition-colors">
+                Connect Google Photos
+            </a>
+            {% endif %}
+        </div>
+        
+        <div class="bg-card rounded-xl shadow-soft p-6">
+            <h2 class="text-lg font-semibold mb-3">Your Photos Stats</h2>
+            
+            <div class="space-y-4">
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span>Total Photos</span>
+                        <span>{{ user.photos.count }}</span>
+                    </div>
+                    <div class="w-full bg-muted rounded-full h-2">
+                        <div class="bg-primary h-2 rounded-full" style="width: 100%"></div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span>Faces Detected</span>
+                        <span>{{ user.faces.count }}</span>
+                    </div>
+                    <div class="w-full bg-muted rounded-full h-2">
+                        <div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span>Named Faces</span>
+                        <span>{{ user.faces.exclude(name='').count }}</span>
+                    </div>
+                    <div class="w-full bg-muted rounded-full h-2">
+                        <div class="bg-primary h-2 rounded-full" style="width: 40%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6">
+                <a href="{% url 'photos:face_list' %}" class="inline-flex items-center justify-center px-4 py-2 bg-muted text-foreground font-medium rounded-md hover:bg-muted/80 transition-colors">
+                    View All Faces
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

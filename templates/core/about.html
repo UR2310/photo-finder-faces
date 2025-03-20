@@ -1,0 +1,138 @@
+
+{% extends 'base.html' %}
+
+{% block title %}About PhotoFinder{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-2 text-center">About PhotoFinder</h1>
+    <p class="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+        Our mission is to help you rediscover your photo memories by making them easily searchable by the people in them.
+    </p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+        <div>
+            <h2 class="text-2xl font-semibold mb-4">Our Story</h2>
+            <p class="text-muted-foreground mb-4">
+                PhotoFinder was created out of a simple frustration: finding photos of specific people in our ever-growing digital photo collections.
+            </p>
+            <p class="text-muted-foreground mb-4">
+                We realized that while services like Google Photos offer basic face recognition, they often lack the fine-grained control that many users need.
+                That's why we built PhotoFinder - to give you powerful tools to filter and find your photos by the faces that matter to you.
+            </p>
+            <p class="text-muted-foreground">
+                Our app securely connects to your Google Photos account, scans your images for faces, and creates an intuitive interface for you to filter and find exactly what you're looking for.
+            </p>
+        </div>
+        
+        <div class="bg-card rounded-xl shadow-soft p-6">
+            <h2 class="text-2xl font-semibold mb-4">How It Works</h2>
+            <div class="space-y-4">
+                <div class="flex">
+                    <div class="flex-shrink-0 h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                        <span class="text-primary font-medium">1</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-medium">Connect Your Account</h3>
+                        <p class="text-muted-foreground">
+                            Securely connect your Google Photos account to PhotoFinder with just a few clicks.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="flex">
+                    <div class="flex-shrink-0 h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                        <span class="text-primary font-medium">2</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-medium">Detect Faces</h3>
+                        <p class="text-muted-foreground">
+                            Our advanced face detection algorithm scans your photos and identifies all the faces.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="flex">
+                    <div class="flex-shrink-0 h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                        <span class="text-primary font-medium">3</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-medium">Name People</h3>
+                        <p class="text-muted-foreground">
+                            Name the faces PhotoFinder detects to make them easier to find later.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="flex">
+                    <div class="flex-shrink-0 h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                        <span class="text-primary font-medium">4</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-medium">Filter & Find</h3>
+                        <p class="text-muted-foreground">
+                            Select one or more faces to instantly filter your photos and find exactly what you're looking for.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-center mb-16">
+        <h2 class="text-2xl font-semibold mb-6">Our Technology</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div class="bg-card rounded-xl p-6 shadow-soft">
+                <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                    </svg>
+                </div>
+                <h3 class="text-lg font-medium mb-2">Face Recognition AI</h3>
+                <p class="text-muted-foreground">
+                    We use advanced machine learning algorithms to accurately detect and recognize faces in your photos.
+                </p>
+            </div>
+            
+            <div class="bg-card rounded-xl p-6 shadow-soft">
+                <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                </div>
+                <h3 class="text-lg font-medium mb-2">Secure Integration</h3>
+                <p class="text-muted-foreground">
+                    Our Google Photos integration uses OAuth for secure access without ever storing your Google password.
+                </p>
+            </div>
+            
+            <div class="bg-card rounded-xl p-6 shadow-soft">
+                <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+                    </svg>
+                </div>
+                <h3 class="text-lg font-medium mb-2">Django Backend</h3>
+                <p class="text-muted-foreground">
+                    Built on the powerful Django framework for reliability, scalability, and security.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bg-card rounded-xl shadow-soft p-8 text-center max-w-3xl mx-auto">
+        <h2 class="text-2xl font-semibold mb-4">Ready to get started?</h2>
+        <p class="text-muted-foreground mb-6 max-w-xl mx-auto">
+            Join PhotoFinder today and discover a new way to explore your photo collection.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="{% url 'users:register' %}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-medium rounded-full hover:bg-primary/90 transition-colors">
+                Create Account
+            </a>
+            <a href="{% url 'photos:photo_list' %}" class="inline-flex items-center justify-center px-6 py-3 bg-muted text-foreground font-medium rounded-full hover:bg-muted/80 transition-colors">
+                Explore Features
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

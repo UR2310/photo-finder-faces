@@ -1,69 +1,122 @@
-# Welcome to your Lovable project
 
-## Project info
+# PhotoFinder - Find Photos by Faces
 
-**URL**: https://lovable.dev/projects/8cff38fd-9994-4354-abc6-b4741cc2e685
+PhotoFinder is a Django application that helps you easily find photos in your Google Photos library based on the people in them. The application uses advanced face detection and recognition to analyze your photos and make them searchable by faces.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- Connect to your Google Photos account
+- Automatic face detection in your photos
+- Name detected faces for easy filtering
+- Filter photos by one or multiple faces
+- View photos organized by the people in them
+- Secure OAuth authentication with Google Photos
 
-**Use Lovable**
+## Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8cff38fd-9994-4354-abc6-b4741cc2e685) and start prompting.
+- **Backend**: Django, Django REST Framework
+- **Database**: PostgreSQL (configurable)
+- **Face Detection**: face_recognition library, OpenCV
+- **Authentication**: Django auth, Google OAuth
+- **Frontend**: HTML, Tailwind CSS
 
-Changes made via Lovable will be committed automatically to this repo.
+## Installation
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Python 3.8+
+- pip
+- virtualenv (recommended)
+- PostgreSQL (optional, can use SQLite for development)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Setup Instructions
 
-Follow these steps:
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/photofinder.git
+   cd photofinder
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. Create a virtual environment and activate it:
+   ```
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+3. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+4. Set up environment variables:
+   Create a `.env` file in the root directory with the following variables:
+   ```
+   SECRET_KEY=your_django_secret_key
+   DEBUG=True
+   GOOGLE_OAUTH2_CLIENT_ID=your_google_client_id
+   GOOGLE_OAUTH2_CLIENT_SECRET=your_google_client_secret
+   GOOGLE_OAUTH2_REDIRECT_URI=http://localhost:8000/photos/callback/
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+5. Run migrations:
+   ```
+   python manage.py migrate
+   ```
+
+6. Create a superuser:
+   ```
+   python manage.py createsuperuser
+   ```
+
+7. Run the development server:
+   ```
+   python manage.py runserver
+   ```
+
+8. Visit `http://localhost:8000` in your browser.
+
+## Google API Setup
+
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project
+3. Enable the Google Photos Library API
+4. Create OAuth 2.0 credentials
+   - Application type: Web application
+   - Authorized redirect URIs: `http://localhost:8000/photos/callback/`
+5. Copy the Client ID and Client Secret to your `.env` file
+
+## Usage
+
+1. Register an account on the PhotoFinder application
+2. Log in to your account
+3. Connect your Google Photos account
+4. Process your photos to detect faces
+5. Name the detected faces
+6. Use the filters to find photos with specific people
+
+## Development
+
+### Project Structure
+
+The project follows a modular structure with Django apps:
+
+- `apps/core`: Core application functionality
+- `apps/photos`: Photo processing, face detection, and Google Photos integration
+- `apps/users`: User authentication and profiles
+
+### Running Tests
+
+```
+python manage.py test
 ```
 
-**Edit a file directly in GitHub**
+## License
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-**Use GitHub Codespaces**
+## Acknowledgments
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/8cff38fd-9994-4354-abc6-b4741cc2e685) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+- Django Framework
+- Google Photos API
+- face_recognition library
+- OpenCV project
