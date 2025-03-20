@@ -63,11 +63,12 @@
                     {% for photo in photos %}
                     <div class="photo-hover overflow-hidden rounded-lg bg-card shadow-soft relative">
                         <div class="aspect-square relative overflow-hidden">
-                            <div class="loading-placeholder absolute inset-0 bg-secondary animate-pulse"></div>
+                            <div class="absolute inset-0 bg-secondary animate-pulse" id="placeholder-{{ photo.id }}"></div>
                             <img src="{{ photo.thumbnail_url }}" 
                                  alt="Photo" 
-                                 class="w-full h-full object-cover transition-opacity duration-500 opacity-0"
-                                 onload="this.classList.remove('opacity-0'); this.previousElementSibling.classList.add('opacity-0')">
+                                 class="w-full h-full object-cover"
+                                 onload="this.style.opacity = '1'; document.getElementById('placeholder-{{ photo.id }}').style.opacity = '0';"
+                                 style="opacity: 0; transition: opacity 0.5s ease;">
                         </div>
                         
                         <div class="p-3">
@@ -113,6 +114,19 @@
                         this.disabled = true;
                     });
                 }
+
+                // Add debugging for image loading issues
+                const images = document.querySelectorAll('img');
+                images.forEach(img => {
+                    img.addEventListener('error', function() {
+                        console.error('Failed to load image:', this.src);
+                        this.style.display = 'none';
+                        const fallbackText = document.createElement('div');
+                        fallbackText.className = 'bg-secondary flex items-center justify-center w-full h-full text-muted-foreground text-xs';
+                        fallbackText.innerText = 'Image unavailable';
+                        this.parentNode.appendChild(fallbackText);
+                    });
+                });
             });
         </script>
     {% endif %}

@@ -19,8 +19,14 @@
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {% for face in faces %}
             <a href="{% url 'photos:face_detail' face.id %}" class="block bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-lg transition-shadow">
-                <div class="aspect-square bg-secondary">
-                    <img src="{{ face.thumbnail.url }}" alt="{{ face.name|default:'Unnamed Face' }}" class="w-full h-full object-cover">
+                <div class="aspect-square bg-secondary relative">
+                    <div class="absolute inset-0 bg-secondary animate-pulse" id="face-placeholder-{{ face.id }}"></div>
+                    <img src="{{ face.thumbnail.url }}" 
+                         alt="{{ face.name|default:'Unnamed Face' }}" 
+                         class="w-full h-full object-cover"
+                         onload="this.style.opacity = '1'; document.getElementById('face-placeholder-{{ face.id }}').style.opacity = '0';"
+                         style="opacity: 0; transition: opacity 0.5s ease;"
+                         onerror="this.style.display='none'; this.parentNode.innerHTML += '<div class=\'flex items-center justify-center w-full h-full\'><span class=\'text-muted-foreground text-xs\'>Image unavailable</span></div>'">
                 </div>
                 <div class="p-4">
                     <h3 class="font-medium truncate">{{ face.name|default:"Unnamed Face" }}</h3>
@@ -47,5 +53,17 @@
             </div>
         </div>
     {% endif %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add debugging for image loading issues
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    console.error('Failed to load image:', this.src);
+                });
+            });
+        });
+    </script>
 </div>
 {% endblock %}
