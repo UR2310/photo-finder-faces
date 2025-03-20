@@ -4,129 +4,79 @@
 {% block title %}PhotoFinder - Find Photos by Faces{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="py-16 px-6 md:py-24 bg-gradient-to-b from-background to-muted/30">
-    <div class="container mx-auto text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">Find Photos by Faces</h1>
-        <p class="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Connect your Google Photos and easily filter your collection 
-            to find pictures containing specific people using our advanced facial recognition.
-        </p>
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="{% url 'photos:photo_list' %}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-medium rounded-full hover:bg-primary/90 transition-colors">
-                Get Started
-            </a>
-            <a href="#how-it-works" class="inline-flex items-center justify-center px-6 py-3 bg-muted text-foreground font-medium rounded-full hover:bg-muted/80 transition-colors">
-                Learn More
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- How It Works Section -->
-<section id="how-it-works" class="py-20 px-6">
-    <div class="container mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold mb-4">How It Works</h2>
-            <p class="text-muted-foreground max-w-2xl mx-auto">
-                Our application seamlessly connects to your Google Photos and uses advanced facial recognition
-                to help you find the perfect photos in seconds.
+<div class="relative overflow-hidden">
+    <div 
+        class="absolute inset-0 bg-gradient-to-r from-primary/10 to-blue-500/10 z-0"
+        style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'rgba(50, 130, 246, 0.05)\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');"
+    ></div>
+    
+    <div class="container mx-auto px-6 py-24 relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+            <div class="inline-block px-3 py-1 mb-4 bg-primary/10 text-primary text-xs font-medium rounded-full animate-fade-in">
+                Facial Recognition Powered
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 animate-fade-up" style="animation-delay: 100ms;">
+                Find your photos by <span class="text-primary">faces</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-fade-up" style="animation-delay: 200ms;">
+                Connect to your Google Photos and instantly filter through your collection 
+                by recognizing the faces that matter most to you.
             </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-card rounded-xl p-6 shadow-soft transition-all hover:shadow-glass" style="animation-delay: 100ms;">
-                <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold mb-2">Connect Photos</h3>
-                <p class="text-muted-foreground mb-4">
-                    Connect to your Google Photos account to give our app access to your photo library.
-                </p>
-            </div>
             
-            <div class="bg-card rounded-xl p-6 shadow-soft transition-all hover:shadow-glass" style="animation-delay: 200ms;">
-                <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-up" style="animation-delay: 300ms;">
+                <a
+                    href="{% url 'photos:photo_list' %}"
+                    class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-medium rounded-full hover:bg-primary/90 transition-colors"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                </div>
-                <h3 class="text-xl font-semibold mb-2">Face Detection</h3>
-                <p class="text-muted-foreground mb-4">
-                    Our system automatically scans your photos and extracts all the faces it can find.
-                </p>
+                    Browse Photos
+                </a>
+                
+                <a
+                    href="#how-it-works"
+                    class="inline-flex items-center justify-center px-6 py-3 bg-secondary text-foreground font-medium rounded-full hover:bg-secondary/80 transition-colors"
+                >
+                    Learn More
+                </a>
             </div>
-            
-            <div class="bg-card rounded-xl p-6 shadow-soft transition-all hover:shadow-glass" style="animation-delay: 300ms;">
-                <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold mb-2">Filter & Find</h3>
-                <p class="text-muted-foreground mb-4">
-                    Select one or multiple faces to instantly filter your photo collection to find exactly what you're looking for.
-                </p>
-            </div>
-        </div>
-        
-        <div class="text-center mt-12">
-            <a href="{% url 'photos:photo_list' %}" class="inline-flex items-center text-primary hover:text-primary/80 font-medium">
-                Try it now 
-                <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-            </a>
         </div>
     </div>
-</section>
+    
+    <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent"></div>
+</div>
 
-<!-- Privacy Section -->
-<section class="py-20 px-6 bg-gradient-to-b from-background to-secondary/30">
-    <div class="container mx-auto">
-        <div class="bg-card rounded-2xl overflow-hidden shadow-glass">
-            <div class="grid grid-cols-1 md:grid-cols-2">
-                <div class="p-8 md:p-12 flex flex-col justify-center">
-                    <div class="inline-block px-3 py-1 mb-4 bg-primary/10 text-primary text-xs font-medium rounded-full">
-                        Private & Secure
-                    </div>
-                    <h2 class="text-2xl md:text-3xl font-bold mb-4">Your Photos Stay Private</h2>
-                    <p class="text-muted-foreground mb-6">
-                        We prioritize your privacy. All face detection happens securely on our servers,
-                        and we never store your photos without permission.
-                    </p>
-                    <a href="{% url 'photos:photo_list' %}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-medium rounded-full hover:bg-primary/90 transition-colors self-start">
-                        Get Started
-                    </a>
-                </div>
-                <div class="bg-gradient-to-tr from-primary/80 to-blue-500/80 p-8 md:p-12 flex items-center justify-center">
-                    <div class="relative w-full max-w-sm">
-                        <div class="absolute -top-4 -left-4 w-24 h-24 bg-white/20 rounded-lg blur-xl"></div>
-                        <div class="absolute -bottom-8 -right-8 w-40 h-40 bg-white/10 rounded-full blur-xl"></div>
-                        <div class="relative bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 shadow-xl">
-                            <div class="flex items-center space-x-2 mb-4">
-                                {% for i in "1234" %}
-                                <div class="w-10 h-10 rounded-full bg-white/30 backdrop-blur-sm"></div>
-                                {% endfor %}
-                            </div>
-                            <div class="space-y-3">
-                                {% for i in "123" %}
-                                <div class="h-16 rounded-lg bg-white/20 backdrop-blur-sm flex items-center p-2">
-                                    <div class="w-12 h-12 rounded bg-white/30 mr-3"></div>
-                                    <div class="space-y-1">
-                                        <div class="h-2 w-24 bg-white/30 rounded"></div>
-                                        <div class="h-2 w-16 bg-white/20 rounded"></div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div id="how-it-works" class="container mx-auto px-6 py-20">
+    <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-card p-6 rounded-xl shadow-soft">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <span class="text-primary font-bold">1</span>
             </div>
+            <h3 class="text-xl font-semibold text-center mb-2">Connect</h3>
+            <p class="text-muted-foreground text-center">Connect your Google Photos account to allow access to your photos.</p>
+        </div>
+        
+        <div class="bg-card p-6 rounded-xl shadow-soft">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <span class="text-primary font-bold">2</span>
+            </div>
+            <h3 class="text-xl font-semibold text-center mb-2">Process</h3>
+            <p class="text-muted-foreground text-center">Our AI identifies and groups faces in your photos automatically.</p>
+        </div>
+        
+        <div class="bg-card p-6 rounded-xl shadow-soft">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <span class="text-primary font-bold">3</span>
+            </div>
+            <h3 class="text-xl font-semibold text-center mb-2">Find</h3>
+            <p class="text-muted-foreground text-center">Easily filter your photos by the people in them with just a click.</p>
         </div>
     </div>
-</section>
+</div>
 {% endblock %}
